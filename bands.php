@@ -1,7 +1,18 @@
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="../css/bands.css">
+  <meta charset="utf-8">
+
+  <title>Masonry demo</title>
+  
+  <meta name="viewport" content="width=device-width">
+
+  
+  <link rel="stylesheet" href="../css/bands.css">
+
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <link rel="stylesheet" type="text/css" href="../css/component.css" />
+
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
@@ -9,11 +20,12 @@
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/k2.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
-
-
+  <script src="../js/modernizr-2.5.3.min.js"></script>
+  
 </head>
 <body>
-<div id="gkMenuWrapper">
+  <!-- header and DB Shit -->
+	<div id="gkMenuWrapper">
 				<div class="gkPage">
 					<div id="gkMainMenu" class="gkPage">
 						<nav id="gkExtraMenu" class="gkMenu">
@@ -62,77 +74,74 @@ $former_members = mysql_query("SELECT DISTINCT t0.name, t0.id FROM artists t0,ba
 $albums = mysql_query("SELECT albums.name, albums.id, albums.image FROM albums ,discography where discography.band_id=$band and discography.album_id=albums.id");
 while ($row = mysql_fetch_array($result)) { 
 ?>
-<article id="k2Container" class="itemView">
-<header class="itemHasImage">
-	<figure class="itemImageBlock">
-	<?php if($row{'image'} == null){ ?>
+  <!-- END OF HEADER AND DB SHIT -->
+   
+  <div id="content" class="container clearfix">
+    
+	<!-- band Image -->
+    <div class="item featured">
+      <?php if($row{'image'} == null){ ?>
 		<img style="width:100%;" src="/images/no_image.jpg">
 	<?php }else{ ?>
 		<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
 		<?php } ?>
-	</figure>
-	<h1>
-		<?php echo $row{'name'};?>
-	</h1>
-</header>
-<div class="itemBody">
-	<div class="itemFullText">
-		<div class="gridpage">
-			<div class="gkCols6">
+    </div>
+    <!-- END OF band Image -->
+	
+	<!-- band bio -->
+    <div class="item featured">
+		<h3 class="header">bio</h3>
+		<div class="gridSpacer">
+			<?php if($row{'bio'} != null) { 
+				 echo $row{'bio'};
+				  } else{ 
+				 echo 'Bio Not Found';
+			} ?>
+		</div>
+    </div>
+    <!-- END OF band bio -->
+	
+	<!-- Band Info -->
+    <div class="item">
+      <div class="dbblock">
+			<h3 class="header">information</h3>
 			
-				<div class="box  gkmod-2">
-					<div class="dbblock">
-						<h3 class="header">
-							bio
-						</h3>
-						<div class="artistSpacer">
-							<?php if($row{'bio'} != null) { 
-							 echo $row{'bio'};
-							  } else{ 
-							 echo 'Bio Not Found';
-							  } ?>
-							 
-							
-						</div>
-					</div>
-				</div> 
-				
-				<div class="box  gkmod-4">
-					<div class="dbblock">
-						<h3 class="header">information</h3>
-						
-						<?php if($row{'year'} != null) { ?>
-						<div class="statblock">
-							year formed <br><span><?php echo $row{'year'};?> </span>
-						</div>
-						<?php  } else { }?>
-						
-						<?php if($row{'origin'} != null) { ?>
-						<div class="statblock">
-							origin <br><span><?php echo $row{'origin'};?> </span>
-						</div>
-						<?php  } else { }?>
-						
-						<?php if($row{'genre'} != null) { ?>
-						<div class="statblock">
-							genres <br><span><?php echo $row{'genre'};?> </span>
-						</div>
-						<?php  } else { }?>
-						
-						<?php if($row{'label'} != null) { ?>
-						<div class="statblock">
-							labels <br><span><?php echo $row{'label'};?> </span>
-						</div>
-						<?php  } else { }?>
-						
-						<?php if($row{'manager'} != null) { ?>
-						<div class="statblock">
-							manager <br><span><?php echo $row{'manager'};?> </span>
-						</div>
-						<?php  } else { }?>
-					</div>
-					
-					<div class="dbblock">
+			<?php if($row{'year'} != null) { ?>
+			<div class="statblock">
+				year formed <br><span><?php echo $row{'year'};?> </span>
+			</div>
+			<?php  } else { }?>
+			
+			<?php if($row{'origin'} != null) { ?>
+			<div class="statblock">
+				origin <br><span><?php echo $row{'origin'};?> </span>
+			</div>
+			<?php  } else { }?>
+			
+			<?php if($row{'genre'} != null) { ?>
+			<div class="statblock">
+				genres <br><span><?php echo $row{'genre'};?> </span>
+			</div>
+			<?php  } else { }?>
+			
+			<?php if($row{'label'} != null) { ?>
+			<div class="statblock">
+				labels <br><span><?php echo $row{'label'};?> </span>
+			</div>
+			<?php  } else { }?>
+			
+			<?php if($row{'manager'} != null) { ?>
+			<div class="statblock">
+				manager <br><span><?php echo $row{'manager'};?> </span>
+			</div>
+			<?php  } else { }?>
+		</div>
+    </div>
+    <!-- END of band info -->
+	
+	<!-- band members -->
+    <div class="item">
+      <div class="dbblock">
 						<h3 class="header">band members</h3>
 						<?php while ($row_members = mysql_fetch_array($members)) { ?>
 							<div class="statblock">
@@ -140,82 +149,96 @@ while ($row = mysql_fetch_array($result)) {
 							</div>
 						<?php } ?>
 					</div>
-					
-					<div class="dbblock">
-						<h3 class="header">former members</h3>
-						<?php if($former_members != null) { ?>
-						<?php while ($row_members_former = mysql_fetch_array($former_members)) { ?>
-							<div class="statblock">
-								<a class="artistLink" href="../artist.php/?artist=<?php echo $row_members_former{'id'}; ?>"><?php echo $row_members_former{'name'};?></a>
+    </div>
+	<!-- end of band member -->
+    
+	<!-- former members -->
+   
+						
+						<?php if(count($former_members) != 0) { ?>
+							<div class="item">
+							<h3 class="header">former members</h3>
+								<div class="dbblock">
+									<?php while ($row_members_former = mysql_fetch_array($former_members)) { ?>
+										<div class="statblock">
+										<a class="artistLink" href="../artist.php/?artist=<?php echo $row_members_former{'id'}; ?>"><?php echo $row_members_former{'name'};?></a>
+										</div>								
+									<?php }  ?>
+								</div>
 							</div>
-							
-						<?php }  ?>
 						<?php } else { echo 'nobody!!'; } ?>
-					</div>
 					
-					
-					<div class="dbblock">
-						<h3 class="header">Links</h3>
-						
-						<div class="spacer">
-						
-							<?php if($row{'website'} != null) { ?>
-							<a class="artistLink" href="<?php echo $row{'website'};?>" target="_blank"><?php echo $row{'website'};?></a>
-							<br><br>
-							<?php } else { }?>
-							
-							<?php if($row{'facebook'} != null) { ?>
-							<div class="infoImg">
-								<a href="<?php echo $row{'facebook'};?>" target="_blank"><img src="../images/social/fb.png"> </a>
-							</div>
-							<?php } else { }?>
-							
-							<?php if($row{'twitter'} != null) { ?>
-							<div class="infoImg">
-								<a href="<?php echo $row{'twitter'};?>" target="_blank"><img src="../images/social/twitter.png"> </a>
-							</div>
-							<?php } else { }?>
-							
-							<?php if($row{'youtube'} != null) { ?>
-							<div class="infoImg">
-								<a href="<?php echo $row{'youtube'};?>" target="_blank"><img src="../images/social/youtube.png"> </a>
-							</div>
-							<?php } else { }?>
-							
-							<?php if($row{'soundcloud'} != null) { ?>
-							<div class="infoImg">
-								<a href="<?php echo $row{'soundcloud'};?>" target="_blank"><img src="../images/social/soundcloud.png"> </a>
-							</div>
-							<?php } else { }?>
-						</div>
-					</div>
-					
-				</div>
-				<div class="box  gkmod-4">
-					<h3 class="header">discography</h3>
-					<div class="gridpage discography" style="margin:15px;">
-						<div class="gkCols6">
-						
-							<?php while ($row_albums = mysql_fetch_array($albums)) { ?>
-							<div class="box  gkmod-2 album" style="text-align:center;">
-								<a href="../album.php/?album=<?php echo $row_albums{'id'}; ?>"><img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?> ">
-								<?php echo $row_albums{'name'};?></a>
-							</div>
-							<?php } ?>
-						</div>
+	<!-- end of former members -->
+    
+	<!-- social links -->
+    <div class="item">
+      <h3 class="header">social</h3>
+			<!-- website link -->
+			<?php if($row{'website'} != null) { ?>
+				<div class="socialLink">
+					<div class="spacer">
+						<a class="artistLink" href="<?php echo $row{'website'};?>" target="_blank"><img src="../images/website.png"></a>
 					</div>
 				</div>
-				
-				
-			</div>
+			<?php } else { }?>
+			
+			<!-- fb link -->
+			<?php if($row{'facebook'} != null) { ?>
+				<div class="socialLink">
+					<div class="spacer">
+						<a class="artistLink" href="<?php echo $row{'facebook'};?>" target="_blank"><img src="../images/facebook500.png"></a>
+					</div>
+				</div>
+			<?php } else { }?>
+							
+			<!-- twitter link -->
+			<?php if($row{'twitter'} != null) { ?>
+				<div class="socialLink">
+					<div class="spacer">
+						<a class="artistLink" href="<?php echo $row{'twitter'};?>" target="_blank"><img src="../images/twitter.png"></a>
+					</div>
+				</div>
+			<?php } else { }?>
+			
+			<!-- youtube link -->
+			<?php if($row{'youtube'} != null) { ?>
+				<div class="socialLink">
+					<div class="spacer">
+						<a class="artistLink" href="<?php echo $row{'youtube'};?>" target="_blank"><img src="../images/youtube.png"></a>
+					</div>
+				</div>
+			<?php } else { }?>
+			
+			<!-- soundcloud link -->
+			<?php if($row{'soundcloud'} != null) { ?>
+				<div class="socialLink">
+					<div class="spacer">
+						<a class="artistLink" href="<?php echo $row{'soundcloud'};?>" target="_blank"><img src="../images/soundcloud.png"></a>
+					</div>
+				</div>
+			<?php } else { }?>
+			
+							
+    </div>
+    <!-- end of social links -->
+		
+	<!-- discography -->
+	<?php while ($row_albums = mysql_fetch_array($albums)) { ?>
+		
+		<div class="item album">
+		
+		<a href="../album.php/?album=<?php echo $row_albums{'id'}; ?>"><h3 class="header">album</h3><img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?> ">
+								<span><?php echo $row_albums{'name'};?></span></a>
 		</div>
-	</div>
-</div>
+		
+	<?php } ?>
+	<!-- end of discography -->
+	
+    
+  </div>
 <?php } ?>
-</article>
 
-
-	<footer id="gkFooter" class="gkPage">
+<footer id="gkFooter" class="gkPage">
 	<div>
 				
 				
@@ -223,4 +246,18 @@ while ($row = mysql_fetch_array($result)) {
 				
 			</div>
 </footer>
+
+
+
+<!-- masonry script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../js/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script src="../js/jquery.masonry.min.js"></script>
+  <script src="../js/script.js"></script>
+  <!-- end masonry script -->
+  
+
+
 </body>
+</html>
