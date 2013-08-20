@@ -1,0 +1,39 @@
+.card{
+width:25%; background:#000; min-height:200px;display:inline-block;
+}
+body{
+margin:0;
+font-family: 'Ubuntu', sans-serif;
+}
+figure {
+margin: 0;
+}
+header h1{
+background: rgba(0, 0, 0, 0.8);
+bottom: 36px;
+left: 0;
+line-height: 1.1;
+padding: 10px 16px;
+position: absolute;
+width: 65%;
+z-index: 1;
+color: #FFF;
+font-size: 44px;
+font-weight: 300;
+text-transform: lowercase;
+}
+.discography img {
+width:100%;
+}
+.discography{
+text-align:center;
+}
+#k2Container .itemBody .box h3 {
+text-transform: lowercase;
+}
+.dbContainer{
+width:100%;
+}
+.noImage img {
+width: 100%;
+}

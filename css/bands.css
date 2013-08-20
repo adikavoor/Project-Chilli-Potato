@@ -1,0 +1,35 @@
+figure {
+margin: 0;
+}
+body{
+background:#fff !important;
+padding:0 !important;
+font-family: 'Ubuntu', sans-serif;
+}
+.itemHasImage, .itemImageBlock{
+position:relative;
+}
+.artistSpacer p{
+text-align:justify;
+}
+.album img{
+width:100%;
+}
+.album {
+text-align:center;
+}
+.artistLink:hover {
+color: rgb(0,0,0) !important;
+}
+.artistLink {
+color: rgb(255, 107, 9) !important;
+}
+.infoImg {
+display: inline-block;
+}
+.spacer {
+margin-top: 20px;
+}
+.itemView {
+padding-bottom: 25px;
+}
