@@ -243,7 +243,7 @@ $row = mysql_fetch_array($result);
 		<div class="item album">
 		
 		<a href="../album.php/?album=<?php echo $row_albums{'id'}; ?>"><h3 class="header">album</h3><img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?> ">
-								<span><?php echo $row_albums{'name'};?></span></a>
+								<div class="albumName"><?php echo $row_albums{'name'};?></div></a>
 		</div>
 		
 	<?php } ?>
@@ -256,11 +256,23 @@ $row = mysql_fetch_array($result);
   </div>
 <!-- end of card conteiner -->
 <div class="shareBar">
-	<span class='st_facebook_hcount' displayText='Facebook'></span>
-	<span class='st_twitter_hcount' displayText='Tweet'></span>
-	<span class='st_googleplus_hcount' displayText='Google +'></span>
-	<span class='st_pinterest_hcount' displayText='Pinterest'></span>
-	<span class='st_stumbleupon_hcount' displayText='StumbleUpon'></span>
+
+	<!-- fb like -->
+	<div class="fb-like" data-href="http://www.wemdb.in/bands.php/?band=<?php echo $row{'id'};?>" data-width="450" data-layout="button_count" data-show-faces="true" data-send="false"></div>
+	
+	<!-- twitter tweet -->
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.wemdb.in/bands.php/?band=<?php echo $row{'id'};?>" data-via="watevermusic" data-hashtags="watevermsuic" data-dnt="true">Tweet</a>
+	
+	<!-- google +1 -->
+	<div class="g-plusone" data-size="medium"></div>
+	
+	<!-- pinterest pin it -->
+	<a href="//pinterest.com/pin/create/button/?url=http://www.wemdb.in/bands.php/?band=<?php echo $row{'id'};?>&media=http://watevermusic.com/images/db/<?php echo $row{'image'};?>&description=<?php echo $row{'bio'};?>" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+	
+	<!-- stumbleupon button -->
+	<su:badge layout="1"></su:badge>
+	
+	
 </div>
 <footer id="gkFooter" class="gkPage">
 	<div>
@@ -278,11 +290,58 @@ $row = mysql_fetch_array($result);
   <script src="../js/script.js"></script>
   <!-- end masonry script -->
   
-	<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "ur-ad8216ff-9455-f465-ad67-d3a28ebb892f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+  <!-- fb js scripts -->
+  
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=306813872789574";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+  <!-- end fb js scripts -->
+  
+  <!-- twitter scripts -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- end twitter scripts -->
+  
+  <!-- g+1 scripts -->
+  <script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+  <!-- end g+1 scripts -->
+  
+  <!-- pinterest scripts -->
+  <script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+  <!-- end pinterest scripts -->
+  
+  <!-- stumbleupon scripts -->
+  <script type="text/javascript">
+  (function() {
+    var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
+    li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
+  })();
+</script>
 
 
+  <!-- end stumbleupon scripts -->
+  
 <!-- google analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
