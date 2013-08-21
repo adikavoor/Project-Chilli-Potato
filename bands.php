@@ -54,6 +54,7 @@ $row = mysql_fetch_array($result);
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
 <link rel="stylesheet" type="text/css" href="../css/bands.css">
+<link rel="stylesheet" type="text/css" href="../css/cards.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <link rel="stylesheet" type="text/css" href="../css/component.css"/>
   <script src="../js/modernizr-2.5.3.min.js"></script>
@@ -82,7 +83,7 @@ $row = mysql_fetch_array($result);
      		</h1>
      		
      	</div>	
-     		<form  style="margin-bottom: 0;" name="search" method="post" action="search.php">
+     		<form  style="margin-bottom: 0;" name="search" method="post" action="../search.php">
 	 	<input type="text" name="find"  placeholder="search wemdb.. "/> 
 	</form>		
 </div>
@@ -249,20 +250,7 @@ $row = mysql_fetch_array($result);
 	<!-- end of discography -->
 	
     <!-- Image Gallery -->
-		<div class="item featured">
-		<h3 class="header">Images</h3>
-			<?php
-				$dirname = "http://www.watevermusic.com/images/db/" . $row{'images'};
-				$images = scandir($dirname);
-				shuffle($images);
-				$ignore = Array(".", "..");
-				foreach($images as $curimg){
-					if(!in_array($curimg, $ignore)) {
-						echo "<li><a href='".$dirname.$curimg."'><img src='img.php?src=".$dirname.$curimg."&w=300&zc=1' alt='' /></a></li>\n ";
-					}
-				}                 
-			?>
-		</div>
+		
 	<!-- end of image gallery -->
 	
   </div>
@@ -294,6 +282,19 @@ $row = mysql_fetch_array($result);
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-ad8216ff-9455-f465-ad67-d3a28ebb892f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43354164-1', 'wemdb.in');
+  ga('send', 'pageview');
+
+</script>
+<!-- end of google analytics -->
 </body>
 
 

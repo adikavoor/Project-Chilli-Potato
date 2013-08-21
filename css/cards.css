@@ -1,0 +1,61 @@
+#content {
+	/*width: 980px;*/
+	/*width: 95%;*/
+	width: auto;
+	margin: 10px auto;
+}
+
+.item {
+	display: block;
+	float: left;
+	width: 300px;
+	margin: 0 20px 20px 0;
+	background: #FFF;
+	border: 1px solid #D8D8D8;
+	border-radius: 3px;
+	box-sizing: border-box;
+	border-bottom-width: 2px;
+	border-top-width: 0;
+	-webkit-transition: left .4s ease-in-out, top .4s ease-in-out .4s;
+	-moz-transition: left .4s ease-in-out, top .4s ease-in-out .4s;
+	-ms-transition: left .4s ease-in-out, top .4s ease-in-out .4s;
+	-o-transition: left .4s ease-in-out, top .4s ease-in-out .4s;
+	transition: left .4s ease-in-out, top .4s ease-in-out .4s;
+}
+
+.featured {
+	width: 620px;
+}
+
+.item img {
+	width: 100%;
+	height: auto;
+	border-radius: 0 0 3px 3px;
+}
+
+.featured img {
+  width: 620px;
+  height: auto;
+}
+.gridSpacer{
+	padding:10px;
+}
+.item .header {
+background: #FF6B09;
+color: #FFF;
+text-align: center;
+border-radius: 3px 3px 0 0;
+}
+.item.album{
+	background-color:#333;
+	width:140px;
+}
+.item.album span{
+	text-align:center;
+	font-size: 15px;
+	line-height: 1;
+	color: #FFF;
+}
+body{
+line-height:1;
+}

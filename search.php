@@ -8,37 +8,22 @@
 		<meta name="description" content="wemdb" />
 		<meta name="keywords" content="wemdb, music, database, india, indian, independent, scene, indie" />
 		<meta name="author" content="Aditya Kavoor" />
-		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="css/default.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+		
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
-<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/template.css">
-<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/k2.css">
-<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
-<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
+		<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
+		<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/template.css">
+		<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/k2.css">
+		<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
+		<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/component.css"/>
+		<link rel="stylesheet" type="text/css" href="css/cards.css">
 		<script src="js/modernizr.custom.js"></script>
 	</head>
 	<body>
-	
-	<?php // top bar 
-	?>
-	<div id="gkMenuWrapper">
-	<div class="gkPage">
-					<div id="gkMainMenu" class="gkPage">
-						<nav id="gkExtraMenu" class="gkMenu">
-							<ul class="gkmenu level0">
-								<li class="first"><a href="http://watevermusic.com/" class=" first active" id="menu640" title="home" onmouseover="">watevermusic.com</a></li>
-								
-							</ul>
-						</nav>
-					</div>	
-				</div>
-				
-			</div>
-	
-		<?php // get search results 
+	<?php // get search results 
 		?>
 		
 		
@@ -97,12 +82,7 @@
 		
 		
 
-	<div class="searchHeader">
-		<img src="images/webdb-1.png">
-	</div>
-	<form name="search" method="post" action="search.php">
-	 	<input type="text" name="find"  placeholder=" <?php echo $input ?> "/> 
-	</form>
+	
 			<?php 
 		
 		$anymatches=mysql_num_rows($result);
@@ -110,28 +90,61 @@
 		{
 		echo '<img style="width:100%;" src="images/No-results.jpg">';
 		} ?>
-	<div class="dbContainer">
+	 <!-- header Shit -->
+	<div id="gkMenuWrapper">
+				<div class="gkPage">
+					<div id="gkMainMenu" class="gkPage">
+						<nav id="gkExtraMenu" class="gkMenu">
+							<ul class="gkmenu level0">
+								<li class="first"><a href="http://watevermusic.com/" class=" first active" id="menu640" title="home" onmouseover="">watevermusic.com</a></li>
+								
+							</ul>
+						</nav>
+					</div>	
+				</div>
+			</div>
+<div id="gkTop" class="noheader">
+	<div class="gkPage">
+		<h1 class="gkLogo" style="padding:5px;">
+	     	<a href="http://wemdb.in/ " id="gkLogo">
+	        <img src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com">
+	     	</a>
+     		</h1>
+     		
+     	</div>	
+     		<form  style="margin-bottom: 0;" name="search" method="post" action="search.php">
+	 	<input type="text" name="find"  placeholder="<?php echo $input ?>"/> 
+	</form>		
+</div>
 
-		<ul class="grid effect-2" id="grid">
+  <!-- END OF HEADER SHIT -->
+	
+		
+	<div id="content" class="container clearfix">
+
+		
 		<?php
 			//display results
 			while ($row = mysql_fetch_array($result)) { ?>
-			<li>
+			<div class="item">
+				<h3 class="header" style="font-size:25px;"><?php echo $row{'name'}; ?></h3>
 				<a href="bands.php/?band=<?php echo $row{'id'}; ?>">
 					<?php if($row{'image'} == null){ ?>
-						<img style="width:100%;" src="/images/no_image.jpg">
+						<img style="width:100%;" src="images/no_image.jpg">
 					<?php }else{ ?>
 						<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
 					<?php } ?>
-					
-					<div class="cardName">
-						<span style="" ><?php echo $row{'name'}; ?></span>
-					</div>
 				</a>
-			</li>
+			</div>
 			<?php } ?>
-		</ul>
+		
 	</div>
-	
+	<!-- masonry script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script src="js/jquery.masonry.min.js"></script>
+  <script src="js/script.js"></script>
+  <!-- end masonry script -->
 	</body>
 </html>
