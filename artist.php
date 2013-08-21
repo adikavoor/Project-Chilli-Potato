@@ -29,13 +29,13 @@
 	<div class="gkPage" style="margin: 2em 0 0 0 !important;">
 		<h1 class="gkLogo" style="padding:5px;">
 	     	<a href="http://wemdb.in/ " id="gkLogo">
-	        <img src="/images/webdb-1.png" alt="watevermusic.com">
+	        <img src="../images/webdb-1.png" alt="watevermusic.com">
 	     	</a>
      		</h1>
      	</div>		
 </div>
 	<div class="noImage">
-		<img src="/images/db_no_image.jpg">
+		<img src="../images/db_no_image.jpg">
 	</div>
 
 	<footer id="gkFooter" class="gkPage">

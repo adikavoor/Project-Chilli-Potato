@@ -47,19 +47,6 @@ body { margin: 0; font-size: 1em; line-height: 1.4; }
 
 
 /* =============================================================================
-   Links
-   ========================================================================== */
-
-a { color: #00e; }
-a:visited { color: #551a8b; }
-a:hover { color: #06e; }
-a:focus { outline: thin dotted; }
-
-/* Improve readability when focused and hovered in all browsers: h5bp.com/h */
-a:hover, a:active { outline: 0; }
-
-
-/* =============================================================================
    Typography
    ========================================================================== */
 
@@ -231,7 +218,11 @@ td { vertical-align: top; }
 	width: 300px;
 	margin: 0 20px 20px 0;
 	background: #FFF;
-	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.4);
+	border: 1px solid #D8D8D8;
+	border-radius: 3px;
+	box-sizing: border-box;
+	border-bottom-width: 2px;
+	border-top-width: 0;
 	-webkit-transition: left .4s ease-in-out, top .4s ease-in-out .4s;
 	-moz-transition: left .4s ease-in-out, top .4s ease-in-out .4s;
 	-ms-transition: left .4s ease-in-out, top .4s ease-in-out .4s;
@@ -246,6 +237,7 @@ td { vertical-align: top; }
 .item img {
 	width: 100%;
 	height: auto;
+	border-radius: 0 0 3px 3px;
 }
 
 .featured img {
@@ -357,6 +349,7 @@ header:after {
 background: #FF6B09;
 color: #FFF;
 text-align: center;
+border-radius: 3px 3px 0 0;
 }
 .item.album{
 	background-color:#333;
@@ -379,4 +372,10 @@ width: 20%;
 }
 .spacer{
 	padding:5px;
+	}
+	.shareBar {
+background: #FFF;
+border-top: 5px solid #FF6B09!important;
+padding: 20px;
+text-align: center;
 }

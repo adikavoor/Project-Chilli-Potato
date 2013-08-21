@@ -4,6 +4,12 @@ width:25%; background:#000; min-height:200px;display:inline-block;
 body{
 margin:0;
 font-family: 'Ubuntu', sans-serif;
+background:#e5e5e5;
+background-image: none !important;
+}
+html {
+background:#e5e5e5;
+background-image: none !important;
 }
 figure {
 margin: 0;
@@ -36,4 +42,9 @@ width:100%;
 }
 .noImage img {
 width: 100%;
+}
+.statblock{
+margin: 10px 15px 10px 15px;
+padding: 0 0 5px 0;
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
