@@ -8,10 +8,9 @@
 		<meta name="description" content="wemdb" />
 		<meta name="keywords" content="wemdb, music, database, india, indian, independent, scene, indie" />
 		<meta name="author" content="Aditya Kavoor" />
-		<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+		<link rel="shortcut icon" href="../favicon.ico">
 		<link rel="stylesheet" type="text/css" href="css/default.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
@@ -20,8 +19,6 @@
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
 		<script src="js/modernizr.custom.js"></script>
-		
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	</head>
 	<body>
 	
@@ -45,41 +42,18 @@
 	 ?>
 		<div class="container">
 			
-			<!-- menu -->
-			
-			
-			<ul id="gn-menu" class="gn-menu-main">
-				<li class="gn-trigger">
-					<a class="gn-icon gn-icon-menu"><span>menu</span></a>
-					<nav class="gn-menu-wrapper">
-						<div class="gn-scroller">
-							<ul class="gn-menu">
-								<li class="gn-search-item">
-									<form name="search" method="post" action="search.php">
-									<input placeholder="search wemdb..." autocomplete="off" name="find" type="search" class="gn-search" >
-									</form>
-									<a class="gn-icon gn-icon-search"><span>Search</span></a>
-								</li>
-								<li>
-									<a class="gn-icon gn-icon-band">discover</a>
-									<ul class="gn-submenu">
-										<li><a class="gn-icon gn-icon-band">discover bands</a></li>
-										<li><a class="gn-icon gn-icon-artists">discover artists</a></li>
-										<li><a class="gn-icon gn-icon-albums">discover albums</a></li>
-										<li><a class="gn-icon gn-icon-songs">discover songs</a></li>
-									</ul>
-								</li>
+			<div id="gkMenuWrapper">
+				<div class="gkPage">
+					<div id="gkMainMenu" class="gkPage">
+						<nav id="gkExtraMenu" class="gkMenu">
+							<ul class="gkmenu level0">
+								<li class="first"><a href="http://watevermusic.com/" class=" first active" id="menu640" title="home" onmouseover="">watevermusic.com</a></li>
 								
 							</ul>
-						</div><!-- /gn-scroller -->
-					</nav>
-				</li>
-				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: 0.4em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
-				<li><a href="http://www.watevermusic.com/"><img src="images/Watevermusic_logo.png"></a></li>
-			</ul>
-			
-			
-			<!-- end menu -->
+						</nav>
+					</div>	
+				</div>
+			</div>
 
 			
 			<div class="main">
@@ -144,17 +118,6 @@
 
 </script>
 <!-- end of google analytics -->
-
-<!-- menu scripts -->
-
-<script src="js/classie.js"></script>
-		<script src="js/gnmenu.js"></script>
-		<script>
-			new gnMenu( document.getElementById( 'gn-menu' ) );
-		</script>
-
-
-<!-- end of menu scripts -->
 		
 	</body>
 </html>
