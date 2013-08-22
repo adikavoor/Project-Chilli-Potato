@@ -61,12 +61,12 @@
 									<a class="gn-icon gn-icon-search"><span>Search</span></a>
 								</li>
 								<li>
-									<a class="gn-icon gn-icon-band">discover</a>
+									<a class="gn-icon gn-icon-discover">discover</a>
 									<ul class="gn-submenu">
-										<li><a class="gn-icon gn-icon-band">discover bands</a></li>
-										<li><a class="gn-icon gn-icon-artists">discover artists</a></li>
-										<li><a class="gn-icon gn-icon-albums">discover albums</a></li>
-										<li><a class="gn-icon gn-icon-songs">discover songs</a></li>
+										<li><a class="gn-icon gn-icon-band">bands</a></li>
+										<li><a class="gn-icon gn-icon-artists">artists</a></li>
+										<li><a class="gn-icon gn-icon-albums">albums</a></li>
+										<li><a class="gn-icon gn-icon-songs">songs</a></li>
 									</ul>
 								</li>
 								

@@ -58,40 +58,54 @@ $row = mysql_fetch_array($result);
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <link rel="stylesheet" type="text/css" href="../css/component.css"/>
   <script src="../js/modernizr-2.5.3.min.js"></script>
-  
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../css/menu.css" />
 </head>
 <body>
-  <!-- header Shit -->
-	<div id="gkMenuWrapper">
-				<div class="gkPage">
-					<div id="gkMainMenu" class="gkPage">
-						<nav id="gkExtraMenu" class="gkMenu">
-							<ul class="gkmenu level0">
-								<li class="first"><a href="http://watevermusic.com/" class=" first active" id="menu640" title="home" onmouseover="">watevermusic.com</a></li>
-								
-							</ul>
-						</nav>
-					</div>	
-				</div>
-			</div>
-<div id="gkTop" class="noheader">
-	<div class="gkPage">
-		<h1 class="gkLogo" style="padding:5px;">
-	     	<a href="http://wemdb.in/ " id="gkLogo">
-	        <img src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com">
-	     	</a>
-     		</h1>
-     		
-     	</div>	
-     		<form  style="margin-bottom: 0;" name="search" method="post" action="../search.php">
-	 	<input type="text" name="find"  placeholder="search wemdb.. "/> 
-	</form>		
-</div>
+
 
   <!-- END OF HEADER SHIT -->
+  
+  <!-- menu -->
+			
+			<div class="content">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li class="gn-search-item">
+									<form name="search" method="post" action="search.php">
+									<input placeholder="search wemdb..." autocomplete="off" name="find" type="search" class="gn-search" >
+									</form>
+									<a class="gn-icon gn-icon-search"><span>Search</span></a>
+								</li>
+								<li>
+									<a class="gn-icon gn-icon-discover">discover</a>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-band">bands</a></li>
+										<li><a class="gn-icon gn-icon-artists">artists</a></li>
+										<li><a class="gn-icon gn-icon-albums">albums</a></li>
+										<li><a class="gn-icon gn-icon-songs">songs</a></li>
+									</ul>
+								</li>
+								
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: 0.4em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
+				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png"></a></li>
+			</ul>
+			</div>
+			
+			<!-- end menu -->
    <!-- the main container for the cards -->
   <div id="content" class="container clearfix">
     
+	
+	
 	<!-- band Image -->
     <div class="item featured">
 	<h3 class="header"><?php echo $row{'name'};?></h3>
@@ -354,6 +368,17 @@ $row = mysql_fetch_array($result);
 
 </script>
 <!-- end of google analytics -->
+
+<!-- menu scripts -->
+
+<script src="../js/classie.js"></script>
+		<script src="../js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+<!-- end of menu scripts -->
 </body>
 
 
