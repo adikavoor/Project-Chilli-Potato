@@ -4,7 +4,7 @@ The guide to deploy [the flask mega tutorial part 1 to part 5](http://blog.migue
 
 1. Create Python 2.6 application
 ```
-rhc app create theflaskmegatutorial python-2.6
+rhc app create theflaskmegatutorial python-2.6 postgresql-9.2
 ```
 
 2. Pull the code from github repository
