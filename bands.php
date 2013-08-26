@@ -54,12 +54,14 @@ $row = mysql_fetch_array($result);
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
 <link rel="stylesheet" type="text/css" href="../css/bands.css">
+<link rel="stylesheet" type="text/css" href="../css/menu.css" />
 <link rel="stylesheet" type="text/css" href="../css/cards.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
+
 <link rel="stylesheet" type="text/css" href="../css/component.css"/>
   <script src="../js/modernizr-2.5.3.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../css/menu.css" />
+  
 </head>
 <body>
 
@@ -68,37 +70,21 @@ $row = mysql_fetch_array($result);
   
   <!-- menu -->
 			
-			<div class="content">
 			<ul id="gn-menu" class="gn-menu-main">
-				<li class="gn-trigger">
-					<a class="gn-icon gn-icon-menu"><span>menu</span></a>
-					<nav class="gn-menu-wrapper">
-						<div class="gn-scroller">
-							<ul class="gn-menu">
-								<li class="gn-search-item">
-									<form name="search" method="post" action="search.php">
-									<input placeholder="search wemdb..." autocomplete="off" name="find" type="search" class="gn-search" >
-									</form>
-									<a class="gn-icon gn-icon-search"><span>Search</span></a>
-								</li>
-								<li>
-									<a class="gn-icon gn-icon-discover">discover</a>
-									<ul class="gn-submenu">
-										<li><a class="gn-icon gn-icon-band">bands</a></li>
-										<li><a class="gn-icon gn-icon-artists">artists</a></li>
-										<li><a class="gn-icon gn-icon-albums">albums</a></li>
-										<li><a class="gn-icon gn-icon-songs">songs</a></li>
-									</ul>
-								</li>
+				
+				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: -0.5em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
+				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png" style="margin-top:-0.5em;"></a></li>
+				<li>
 								
-							</ul>
-						</div><!-- /gn-scroller -->
-					</nav>
-				</li>
-				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: 0.4em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
-				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png"></a></li>
+									<div id="sb-search" class="sb-search">
+										<form>
+											<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="search" id="search" style="box-shadow:none !important;">
+											<input class="sb-search-submit" type="submit" value="">
+											<span class="sb-icon-search"></span>
+										</form>
+									</div>
+					</li>			
 			</ul>
-			</div>
 			
 			<!-- end menu -->
 			<div class="bandHeader">
@@ -382,6 +368,14 @@ $row = mysql_fetch_array($result);
 
 
 <!-- end of menu scripts -->
+<!-- search scripts -->
+		<script src="../js/classie.js"></script>
+		<script src="../js/uisearch.js"></script>
+		<script>
+			new UISearch( document.getElementById( 'sb-search' ) );
+		</script>
+
+		<!-- end search scripts -->
 </body>
 
 
