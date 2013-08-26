@@ -1,6 +1,43 @@
 <head>
-<link rel="stylesheet" type="text/css" href="../css/bands.css">
-<link rel="stylesheet" type="text/css" href="../css/main.css">
+
+<!-- DB Shit -->
+<?php
+$username = "dkavoor_whatever";
+$password = "wateveradmin";
+$hostname = "localhost"; 
+
+//connection to the database
+$dbhandle = mysql_connect($hostname, $username, $password) 
+  or die("Unable to connect to MySQL");
+?>
+<?php
+//select a database to work with
+$selected = mysql_select_db("dkavoor_whatevermusic",$dbhandle) 
+  or die("Could not select examples");
+?>
+<?php
+$album = $_GET['album'];?>
+<?php
+//execute the SQL query and return records
+$result = mysql_query("SELECT * FROM albums where id=$album");
+$row = mysql_fetch_array($result);
+?>
+<!-- end of the DB Shit -->
+<meta charset="utf-8">
+  <title><?php echo $row{'name'};?> - wemdb.in</title>  
+  <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width">
+
+  <!-- facebook property tags for open graph -->
+  
+  <meta property="og:image" content="http://www.watevermusic.com/images/db/<?php echo $row{'image'};?>">
+  <meta property="og:image:type" content="image/jpg">
+  <meta property="og:title" content="<?php echo $row{'name'};?>"/>
+  <meta property="og:url" content="http://www.wemdb.in/albums.php/?album=<?php echo $row{'id'};?>"/>
+  <meta property="og:site_name" content="wemdb.in"/>
+  
+  
+  <!-- end of fb open graph tags -->
 
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 
@@ -9,44 +46,146 @@
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/k2.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
-
+<link rel="stylesheet" type="text/css" href="../css/bands.css">
+<link rel="stylesheet" type="text/css" href="../css/cards.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/component.css"/>
+  <script src="../js/modernizr-2.5.3.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../css/menu.css" />
 
 </head>
 <body>
-<div id="gkMenuWrapper">
-				<div class="gkPage">
-					<div id="gkMainMenu" class="gkPage">
-						<nav id="gkExtraMenu" class="gkMenu">
-							<ul class="gkmenu level0">
-								<li class="first"><a href="http://watevermusic.com/" class=" first active" id="menu640" title="home" onmouseover="">watevermusic.com</a></li>
+<!-- menu -->
+			
+			<div class="content">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li class="gn-search-item">
+									<form name="search" method="post" action="search.php">
+									<input placeholder="search wemdb..." autocomplete="off" name="find" type="search" class="gn-search" >
+									</form>
+									<a class="gn-icon gn-icon-search"><span>Search</span></a>
+								</li>
+								<li>
+									<a class="gn-icon gn-icon-discover">discover</a>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-band">bands</a></li>
+										<li><a class="gn-icon gn-icon-artists">artists</a></li>
+										<li><a class="gn-icon gn-icon-albums">albums</a></li>
+										<li><a class="gn-icon gn-icon-songs">songs</a></li>
+									</ul>
+								</li>
 								
 							</ul>
-						</nav>
-					</div>	
-				</div>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: 0.4em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
+				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png"></a></li>
+			</ul>
 			</div>
-<div id="gkTop" class="noheader">
-	<div class="gkPage" >
-		<h1 class="gkLogo" style="padding:5px;">
-	     	<a href="http://wemdb.in/ " id="gkLogo">
-	        <img src="../images/webdb-1.png" alt="watevermusic.com">
-	     	</a>
-     		</h1>
-     	</div>			
-</div>
-	<div class="noImage">
-		<img src="../images/db_no_image.jpg">
-	</div>
+			
+			<!-- end menu -->
 
-	<footer id="gkFooter" class="gkPage">
+
+			<div id="content" class="container clearfix">
+	<div class="item">
+		<?php echo $row{'name'};?>
+		<?php echo $row{'band_id'};?>
+	</div>
+</div>
+<div class="shareBar">
+
+	<!-- fb like -->
+	<div class="fb-like" data-href="http://www.wemdb.in/bands.php/?band=<?php echo $row{'id'};?>" data-width="450" data-layout="button_count" data-show-faces="true" data-send="false"></div>
+	
+	<!-- twitter tweet -->
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.wemdb.in/bands.php/?band=<?php echo $row{'id'};?>" data-via="watevermusic" data-hashtags="watevermsuic" data-dnt="true">Tweet</a>
+	
+	<!-- google +1 -->
+	<div class="g-plusone" data-size="medium"></div>
+	
+	<!-- pinterest pin it -->
+	<a href="//pinterest.com/pin/create/button/?url=http://www.wemdb.in/bands.php/?band=<?php echo $row{'id'};?>&media=http://watevermusic.com/images/db/<?php echo $row{'image'};?>&description=<?php echo $row{'bio'};?>" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+	
+	<!-- stumbleupon button -->
+	<su:badge layout="1"></su:badge>
+	
+	
+</div>
+<footer id="gkFooter" class="gkPage">
 	<div>
-				
-				
-				<p id="gkCopyrights">© 2013, watevermusic.com. All Rights Reserved.</p>
-				
-			</div>
+		<p id="gkCopyrights">© 2013, watevermusic.com. All Rights Reserved.</p>
+	</div>
 </footer>
 
+
+
+<!-- masonry script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../js/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script src="../js/jquery.masonry.min.js"></script>
+  <script src="../js/script.js"></script>
+  <!-- end masonry script -->
+  
+  <!-- fb js scripts -->
+  
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=306813872789574";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+  <!-- end fb js scripts -->
+  
+  <!-- twitter scripts -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- end twitter scripts -->
+  
+  <!-- g+1 scripts -->
+  <script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+  <!-- end g+1 scripts -->
+  
+  <!-- pinterest scripts -->
+  <script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+  <!-- end pinterest scripts -->
+  
+  <!-- stumbleupon scripts -->
+  <script type="text/javascript">
+  (function() {
+    var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
+    li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
+  })();
+</script>
+
+
+  <!-- end stumbleupon scripts -->
+  
 <!-- google analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -59,4 +198,15 @@
 
 </script>
 <!-- end of google analytics -->
+
+<!-- menu scripts -->
+
+<script src="../js/classie.js"></script>
+		<script src="../js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+<!-- end of menu scripts -->
 </body>

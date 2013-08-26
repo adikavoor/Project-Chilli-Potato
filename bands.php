@@ -24,7 +24,7 @@ $band = $_GET['band'];?>
 $result = mysql_query("SELECT * FROM bands where id=$band");
 $members = mysql_query("SELECT DISTINCT t0.name, t0.id FROM artists t0,bands t1,band_members t2 where t2.band_id=$band and t2.member_id=t0.id and t2.current_status=1");
 $former_members = mysql_query("SELECT DISTINCT t0.name, t0.id FROM artists t0,bands t1,band_members t2 where t2.band_id=$band and t2.member_id=t0.id and t2.current_status=0");
-$albums = mysql_query("SELECT albums.name, albums.id, albums.image FROM albums ,discography where discography.band_id=$band and discography.album_id=albums.id");
+$albums = mysql_query("SELECT name, id, image FROM albums where band_id=$band ");
 $row = mysql_fetch_array($result);
 ?>
 <!-- end of the DB Shit -->
@@ -101,39 +101,24 @@ $row = mysql_fetch_array($result);
 			</div>
 			
 			<!-- end menu -->
+			<div class="bandHeader">
+				
+		<h3 class="header"><?php echo $row{'name'};?></h3>
+			</div>
    <!-- the main container for the cards -->
   <div id="content" class="container clearfix">
     
 	
 	
 	<!-- band Image -->
-    <div class="item featured">
-	<h3 class="header"><?php echo $row{'name'};?></h3>
-      <?php if($row{'image'} == null){ ?>
+    <div class="item cover featured">
+	<?php if($row{'image'} == null){ ?>
 		<img style="width:100%;" src="/images/no_image.jpg">
 	<?php }else{ ?>
 		<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
 		<?php } ?>
-    </div>
-    <!-- END OF band Image -->
-	
-	<!-- band bio -->
-    <div class="item featured">
-		<h3 class="header">bio</h3>
-		<div class="gridSpacer">
-			<?php if($row{'bio'} != null) { 
-				 echo $row{'bio'};
-				  } else{ 
-				 echo 'Bio Not Found';
-			} ?>
-		</div>
-    </div>
-    <!-- END OF band bio -->
-	
-	<!-- Band Info -->
-    <div class="item">
-      <div class="dbblock">
-			<h3 class="header">information</h3>
+      
+	  <div class="dbblock">
 			
 			<?php if($row{'year'} != null) { ?>
 			<div class="statblock">
@@ -166,7 +151,35 @@ $row = mysql_fetch_array($result);
 			<?php  } else { }?>
 		</div>
     </div>
-    <!-- END of band info -->
+    <!-- END OF band Image -->
+	
+	<!-- band bio -->
+    <div class="item bio featured">
+		
+		<div class="gridSpacer" style="padding-top:0px;">
+			<?php if($row{'bio'} != null) { 
+				 echo $row{'bio'};
+				  } else{ 
+				 echo 'Bio Not Found';
+			} ?>
+		</div>
+    </div>
+    <!-- END OF band bio -->
+	
+	<!-- discography -->
+	<div class="item featured">
+	<h3 class="header">discography</h3>
+	<?php while ($row_albums = mysql_fetch_array($albums)) { ?>
+		
+		
+		<div class="album">
+		<a href="../album.php/?album=<?php echo $row_albums{'id'}; ?>"><img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?> ">
+								<div class="albumName"><?php echo $row_albums{'name'};?></div></a>
+		
+		</div>
+	<?php } ?>
+	</div>
+	<!-- end of discography -->
 	
 	<!-- band members -->
     <div class="item">
@@ -251,17 +264,7 @@ $row = mysql_fetch_array($result);
     </div>
     <!-- end of social links -->
 		
-	<!-- discography -->
-	<?php while ($row_albums = mysql_fetch_array($albums)) { ?>
-		
-		<div class="item album">
-		
-		<a href="../album.php/?album=<?php echo $row_albums{'id'}; ?>"><h3 class="header">album</h3><img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?> ">
-								<div class="albumName"><?php echo $row_albums{'name'};?></div></a>
-		</div>
-		
-	<?php } ?>
-	<!-- end of discography -->
+	
 	
     <!-- Image Gallery -->
 		

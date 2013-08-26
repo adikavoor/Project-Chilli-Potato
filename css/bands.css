@@ -307,12 +307,7 @@ header:after {
 .gridSpacer{
 	padding:10px;
 }
-.item .header {
-background: #FF6B09;
-color: #FFF;
-text-align: center;
-border-radius: 3px 3px 0 0;
-}
+
 .item.album{
 	background-color:#333;
 	width:140px;
@@ -337,9 +332,12 @@ width: 18.9%;
 .spacer{
 	padding:5px;
 	}
-	.shareBar {
-background: #FFF;
-border-top: 5px solid #FF6B09!important;
-padding: 5px;
-text-align: center;
+	.bandHeader {
+margin-top: 50px !important;
+margin-right: 50px;
+text-align: right;
+padding-right: 50px;
+background-image: url(http://tunepatrol.com/static/img/heading_bg.png);
+background-position: right;
+background-repeat: no-repeat;
 }

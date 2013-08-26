@@ -4,12 +4,11 @@ width:25%; background:#000; min-height:200px;display:inline-block;
 body{
 margin:0;
 font-family: 'Ubuntu', sans-serif;
-background:#e5e5e5;
-background-image: none !important;
+background:#fff;
+
 }
 html {
-background:#e5e5e5;
-background-image: none !important;
+background:#fff;
 }
 figure {
 margin: 0;
@@ -50,4 +49,10 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 #gkFooter{
 line-height:0;
+}
+.shareBar {
+background: #FFF;
+border-top: 5px solid #FF6B09!important;
+padding: 5px;
+text-align: center;
 }
