@@ -19,6 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" type="text/css" href="css/component.css"/>
+		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 		<link rel="stylesheet" type="text/css" href="css/cards.css">
 		<script src="js/modernizr.custom.js"></script>
 	</head>
@@ -85,31 +86,34 @@
 	
 			
 	 <!-- header Shit -->
-	<div id="gkMenuWrapper">
-				<div class="gkPage">
-					<div id="gkMainMenu" class="gkPage">
-						<nav id="gkExtraMenu" class="gkMenu">
-							<ul class="gkmenu level0">
-								<li class="first"><a href="http://watevermusic.com/" class=" first active" id="menu640" title="home" onmouseover="">watevermusic.com</a></li>
+	<div class="container">
+			
+			<!-- menu -->
+			
+
+			
+			<ul id="gn-menu" class="gn-menu-main">
+				
+				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: 0.1em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
+				<li><a href="http://www.watevermusic.com/"><img src="images/Watevermusic_logo.png"></a></li>
+				<li>
 								
-							</ul>
-						</nav>
-					</div>	
-				</div>
-			</div>
-<div id="gkTop" class="noheader">
-	<div class="gkPage">
-		<h1 class="gkLogo" style="padding:5px;">
-	     	<a href="http://wemdb.in/ " id="gkLogo">
-	        <img src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com">
-	     	</a>
-     		</h1>
-     		
-     	</div>	
-     		<form  style="margin-bottom: 0;" name="search" method="post" action="search.php">
-	 	<input type="text" name="find"  placeholder="<?php echo $input ?>"/> 
-	</form>		
-</div>
+									<div id="sb-search" class="sb-search">
+										<form  name="search" method="post" action="search.php">
+											<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="find" id="search" style="box-shadow:none !important;">
+											<input class="sb-search-submit" type="submit" value="">
+											<span class="sb-icon-search"></span>
+										</form>
+									</div>
+					</li>			
+			</ul>
+			
+			
+			<!-- end menu -->
+			
+			
+			
+		</div>
 
   <!-- END OF HEADER SHIT -->
 	<?php 
@@ -159,6 +163,23 @@
 
 </script>
 <!-- end of google analytics -->
-  
+  <!-- search scripts -->
+		<script src="js/classie.js"></script>
+		<script src="js/uisearch.js"></script>
+		<script>
+			new UISearch( document.getElementById( 'sb-search' ) );
+		</script>
+
+		<!-- end search scripts -->
+		<!-- menu scripts -->
+
+<script src="js/classie.js"></script>
+		<script src="js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+<!-- end of menu scripts -->
 	</body>
 </html>

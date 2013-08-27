@@ -341,3 +341,10 @@ background-image: url(http://tunepatrol.com/static/img/heading_bg.png);
 background-position: right;
 background-repeat: no-repeat;
 }
+.relatedBands #content{
+margin: 10px 50px;
+}
+.relatedBands .bandHeader{
+margin-top:10px !important;
+margin-right:0;
+}

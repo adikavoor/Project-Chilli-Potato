@@ -58,8 +58,8 @@
 				<li>
 								
 									<div id="sb-search" class="sb-search">
-										<form>
-											<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="search" id="search" style="box-shadow:none !important;">
+										<form  name="search" method="post" action="search.php">
+											<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="find" id="search" style="box-shadow:none !important;">
 											<input class="sb-search-submit" type="submit" value="">
 											<span class="sb-icon-search"></span>
 										</form>

@@ -26,6 +26,9 @@ $members = mysql_query("SELECT DISTINCT t0.name, t0.id FROM artists t0,bands t1,
 $former_members = mysql_query("SELECT DISTINCT t0.name, t0.id FROM artists t0,bands t1,band_members t2 where t2.band_id=$band and t2.member_id=t0.id and t2.current_status=0");
 $albums = mysql_query("SELECT name, id, image FROM albums where band_id=$band ");
 $row = mysql_fetch_array($result);
+$genres = $row{'genre'};
+
+
 ?>
 <!-- end of the DB Shit -->
 
@@ -65,7 +68,6 @@ $row = mysql_fetch_array($result);
 </head>
 <body>
 
-
   <!-- END OF HEADER SHIT -->
   
   <!-- menu -->
@@ -73,12 +75,12 @@ $row = mysql_fetch_array($result);
 			<ul id="gn-menu" class="gn-menu-main">
 				
 				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: -0.5em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
-				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png" style="margin-top:-0.5em;"></a></li>
+				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png" style="margin-top: -0.5em;"></a></li>
 				<li>
 								
 									<div id="sb-search" class="sb-search">
-										<form>
-											<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="search" id="search" style="box-shadow:none !important;">
+										<form  name="search" method="post" action="../search.php">
+											<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="find" id="search" style="box-shadow:none !important;">
 											<input class="sb-search-submit" type="submit" value="">
 											<span class="sb-icon-search"></span>
 										</form>
@@ -99,7 +101,7 @@ $row = mysql_fetch_array($result);
 	<!-- band Image -->
     <div class="item cover featured">
 	<?php if($row{'image'} == null){ ?>
-		<img style="width:100%;" src="/images/no_image.jpg">
+		<img style="width:100%;" src="../images/no_image.jpg">
 	<?php }else{ ?>
 		<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
 		<?php } ?>
@@ -159,8 +161,13 @@ $row = mysql_fetch_array($result);
 		
 		
 		<div class="album">
-		<a href="../album.php/?album=<?php echo $row_albums{'id'}; ?>"><img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?> ">
-								<div class="albumName"><?php echo $row_albums{'name'};?></div></a>
+		<a href="../album.php/?album=<?php echo $row_albums{'id'}; ?>">
+		<?php if($row_albums{'image'} == null){ ?>
+		<img style="width:100%;" src="../images/no_image.jpg">
+	<?php }else{ ?>
+		<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?>"><div class="albumName"><?php echo $row_albums{'name'};?></div
+		<?php } ?>
+		</a>
 		
 		</div>
 	<?php } ?>
@@ -258,6 +265,56 @@ $row = mysql_fetch_array($result);
 	
   </div>
 <!-- end of card conteiner -->
+<!-- get 4 random bands -->
+<?php 
+	$string = explode(" ",$genres);		
+		$keyword_count = count($string);
+		$sql = "SELECT id,name,image FROM bands Where" ;
+		for($i=0; $i<$keyword_count;$i++)
+		{
+			if($i == 0)
+			{
+			}
+			else
+			{$sql = $sql . " OR ";}
+			
+			
+			$sql = $sql . " genre LIKE '%$string[$i]%'";
+		
+		}
+		$sql = $sql . " ORDER BY RAND() LIMIT 0,4;;";
+		$related = mysql_query("$sql");
+		if (!$related) { // add this check.
+    die('Invalid query: ' . mysql_error());
+}
+?>
+<div class="relatedBands">
+
+	<div class="bandHeader">
+		<h3 class="header">you might also be interested in these bands</h3>
+	</div>
+	<div id="content" class="container clearfix">
+			<?php while ($related_bands = mysql_fetch_array($related)) { 
+				if($related_bands{'id'}!=$band){?>
+					<div class="item">
+						<a href="../bands.php/?band=<?php echo $related_bands{'id'}; ?>" target="_blank">
+						<?php if($related_bands{'image'} != null) { ?>
+							<div class="randomImage">
+								<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $related_bands{'image'};?>">
+							</div>
+						<?php } else { ?>
+							<div class="randomImage">
+								<img style="width:100%;" src="http://wemdb.in/images/no_image.jpg">
+							</div>
+						<?php } ?>
+						<div class="bandHeader">
+						<div class="bandName"><?php echo $related_bands{'name'}; ?></div></div>
+						</a>
+					</div>
+			<?php } } ?>
+		</div>
+</div>
+
 <div class="shareBar">
 
 	<!-- fb like -->
@@ -277,6 +334,7 @@ $row = mysql_fetch_array($result);
 	
 	
 </div>
+
 <footer id="gkFooter" class="gkPage">
 	<div>
 		<p id="gkCopyrights">© 2013, watevermusic.com. All Rights Reserved.</p>
