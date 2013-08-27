@@ -123,7 +123,8 @@
 		{
 		echo '<img style="width:100%;" src="images/No-results.jpg">';
 		} ?>
-		
+		<div class="bandHeader" style="margin-top:25px;">
+			<h3 class="header">your search for "<?php echo $input; ?>" returned "<?php echo $anymatches; ?>" results.</h3></div>
 	<div id="content" class="container clearfix">
 
 		
