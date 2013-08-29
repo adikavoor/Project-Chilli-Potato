@@ -50,7 +50,6 @@ $genres = $row{'genre'};
 
 
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
-
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/template.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/k2.css">
@@ -60,11 +59,10 @@ $genres = $row{'genre'};
 <link rel="stylesheet" type="text/css" href="../css/menu.css" />
 <link rel="stylesheet" type="text/css" href="../css/cards.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
-
 <link rel="stylesheet" type="text/css" href="../css/component.css"/>
-  <script src="../js/modernizr-2.5.3.min.js"></script>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  
+<script src="../js/modernizr-2.5.3.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../css/shadowbox.css">
 </head>
 <body>
 
@@ -103,7 +101,9 @@ $genres = $row{'genre'};
 	<?php if($row{'image'} == null){ ?>
 		<img style="width:100%;" src="../images/no_image.jpg">
 	<?php }else{ ?>
-		<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+		<a href="http://watevermusic.com/images/db/<?php echo $row{'image'};?>" rel="shadowbox">
+			<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+		</a>
 		<?php } ?>
       
 	  <div class="dbblock">
@@ -165,7 +165,10 @@ $genres = $row{'genre'};
 		<?php if($row_albums{'image'} == null){ ?>
 		<img style="width:100%;" src="../images/no_image.jpg">
 	<?php }else{ ?>
-		<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?>"><div class="albumName"><?php echo $row_albums{'name'};?></div
+	
+		<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row_albums{'image'};?>">
+		<img style="width:100%;" class="hoverImage" src="../images/album_hover.png">
+		<div class="albumName"><?php echo $row_albums{'name'};?></div>
 		<?php } ?>
 		</a>
 		
@@ -177,33 +180,22 @@ $genres = $row{'genre'};
 	<!-- band members -->
     <div class="item">
       <div class="dbblock">
-						<h3 class="header">band members</h3>
+						<h3 class="header">members</h3>
 						<?php while ($row_members = mysql_fetch_array($members)) { ?>
 							<div class="statblock">
-								<a class ="artistLink" href="../artist.php/?artist=<?php echo $row_members{'id'}; ?>"><?php echo $row_members{'name'};?></a>
+								<a class ="artistLink" href="../artist.php/?artist=<?php echo $row_members{'id'}; ?>"><i class="icon-ok"></i>  <?php echo $row_members{'name'};?></a>
 							</div>
 						<?php } ?>
+						<?php while ($row_members_former = mysql_fetch_array($former_members)) { ?>
+										<div class="statblock">
+										<a class="artistLink former" href="../artist.php/?artist=<?php echo $row_members_former{'id'}; ?>"><i class="icon-remove"></i>  <?php echo $row_members_former{'name'};?></a>
+										</div>								
+									<?php }  ?>
 					</div>
     </div>
 	<!-- end of band member -->
     
-	<!-- former members -->
-   
-						
-						<?php if($former_members != null) { ?>
-							<div class="item">
-							<h3 class="header">former members</h3>
-								<div class="dbblock">
-									<?php while ($row_members_former = mysql_fetch_array($former_members)) { ?>
-										<div class="statblock">
-										<a class="artistLink" href="../artist.php/?artist=<?php echo $row_members_former{'id'}; ?>"><?php echo $row_members_former{'name'};?></a>
-										</div>								
-									<?php }  ?>
-								</div>
-							</div>
-						<?php } else { echo 'nobody!!'; } ?>
-					
-	<!-- end of former members -->
+	
     
 	<!-- social links -->
     <div class="item">
@@ -260,7 +252,22 @@ $genres = $row{'genre'};
 	
 	
     <!-- Image Gallery -->
-		
+
+		<div class="item">
+<ul>
+    <?php
+        $dirname = __DIR__.'\images\db\\'.$row{'images'};
+        $images = scandir($dirname);
+        shuffle($images);
+        $ignore = Array(".", "..");
+        foreach($images as $curimg){
+            if(!in_array($curimg, $ignore)) {
+                echo "<li style= 'list-style-type:none;margin-right:10px;margin-bottom:10px;float:left;'><a href='".$dirname."/".$curimg."'><img src='".$dirname."/".$curimg."' alt='' /></a></li>\n ";
+            }
+        }                 
+    ?>
+</ul>
+</div>
 	<!-- end of image gallery -->
 	
   </div>
@@ -297,18 +304,21 @@ $genres = $row{'genre'};
 			<?php while ($related_bands = mysql_fetch_array($related)) { 
 				if($related_bands{'id'}!=$band){?>
 					<div class="item">
-						<a href="../bands.php/?band=<?php echo $related_bands{'id'}; ?>" target="_blank">
+						<a href="../bands.php/?band=<?php echo $related_bands{'id'}; ?>">
 						<?php if($related_bands{'image'} != null) { ?>
 							<div class="randomImage">
 								<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $related_bands{'image'};?>">
+								<img class="hoverImage" src="../images/band_hover.png">
 							</div>
 						<?php } else { ?>
 							<div class="randomImage">
 								<img style="width:100%;" src="http://wemdb.in/images/no_image.jpg">
+								<img style="width:100%;" class="hoverImage" src="../images/band_hover.png">
 							</div>
 						<?php } ?>
 						<div class="bandHeader">
 						<div class="bandName"><?php echo $related_bands{'name'}; ?></div></div>
+						
 						</a>
 					</div>
 			<?php } } ?>
@@ -434,6 +444,14 @@ $genres = $row{'genre'};
 		</script>
 
 		<!-- end search scripts -->
+		
+		<!-- shadowbox scripts -->
+<script type="text/javascript" src="../js/shadowbox.js"></script>
+<script type="text/javascript">
+Shadowbox.init();
+</script>
+<!-- end shadowbox scripts -->
+		
 </body>
 
 

@@ -86,7 +86,7 @@
 	
 			
 	 <!-- header Shit -->
-	<div class="container">
+	// <div class="container">
 			
 			<!-- menu -->
 			
@@ -132,13 +132,18 @@
 			//display results
 			while ($row = mysql_fetch_array($result)) { ?>
 			<div class="item">
-				<h3 class="header" style="font-size:25px;"><?php echo $row{'name'}; ?></h3>
+				
 				<a href="bands.php/?band=<?php echo $row{'id'}; ?>">
-					<?php if($row{'image'} == null){ ?>
+				<div class="randomImage">
+				<h3 class="header" style="font-size:25px;"><?php echo $row{'name'}; ?></h3>
+					<?php if($row{'image'} == null){ ?>					
 						<img style="width:100%;" src="images/no_image.jpg">
+						<img class="hoverImage" src="images/band_hover.png">					
 					<?php }else{ ?>
 						<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+						<img class="hoverImage" src="images/band_hover.png">
 					<?php } ?>
+				</div>
 				</a>
 			</div>
 			<?php } ?>

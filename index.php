@@ -92,10 +92,12 @@
 					<?php if($row{'image'} != null) { ?>
 						<div class="randomImage">
 							<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+							<img class="hoverImage" src="images/band_hover.png">
 						</div>
 					<?php } else { ?>
 						<div class="randomImage">
 							<img style="width:100%;" src="http://wemdb.in/images/no_image.jpg">
+							<img class="hoverImage" src="images/band_hover.png">
 						</div>
 					<?php } ?>
 					<div class="bandHeader">

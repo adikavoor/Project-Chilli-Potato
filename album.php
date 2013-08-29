@@ -21,6 +21,7 @@ $album = $_GET['album'];?>
 //execute the SQL query and return records
 $result = mysql_query("SELECT * FROM albums where id=$album");
 $row = mysql_fetch_array($result);
+$songs = mysql_query("SELECT name,length FROM songs WHERE album_id=$album");
 ?>
 <!-- end of the DB Shit -->
 <meta charset="utf-8">
@@ -40,65 +41,113 @@ $row = mysql_fetch_array($result);
   <!-- end of fb open graph tags -->
 
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
-
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/template.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/k2.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
 <link rel="stylesheet" type="text/css" href="../css/bands.css">
+<link rel="stylesheet" type="text/css" href="../css/menu.css" />
 <link rel="stylesheet" type="text/css" href="../css/cards.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <link rel="stylesheet" type="text/css" href="../css/component.css"/>
-  <script src="../js/modernizr-2.5.3.min.js"></script>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../css/menu.css" />
-
+<link rel="stylesheet" type="text/css" href="../css/shadowbox.css">
+<script src="../js/modernizr-2.5.3.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
 <!-- menu -->
 			
-			<div class="content">
 			<ul id="gn-menu" class="gn-menu-main">
-				<li class="gn-trigger">
-					<a class="gn-icon gn-icon-menu"><span>menu</span></a>
-					<nav class="gn-menu-wrapper">
-						<div class="gn-scroller">
-							<ul class="gn-menu">
-								<li class="gn-search-item">
-									<form name="search" method="post" action="search.php">
-									<input placeholder="search wemdb..." autocomplete="off" name="find" type="search" class="gn-search" >
-									</form>
-									<a class="gn-icon gn-icon-search"><span>Search</span></a>
-								</li>
-								<li>
-									<a class="gn-icon gn-icon-discover">discover</a>
-									<ul class="gn-submenu">
-										<li><a class="gn-icon gn-icon-band">bands</a></li>
-										<li><a class="gn-icon gn-icon-artists">artists</a></li>
-										<li><a class="gn-icon gn-icon-albums">albums</a></li>
-										<li><a class="gn-icon gn-icon-songs">songs</a></li>
-									</ul>
-								</li>
-								
-							</ul>
-						</div><!-- /gn-scroller -->
-					</nav>
-				</li>
-				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: 0.4em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
-				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png"></a></li>
+				
+				<li><a href="http://www.wemdb.in"><img style="width:160px;margin-top: 0.1em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
+				<li><a href="http://www.watevermusic.com/"><img src="../images/Watevermusic_logo.png" style="margin-top: 0.1em;"></a></li>
+				<li>								
+					<div id="sb-search" class="sb-search">
+						<form  name="search" method="post" action="../search.php">
+							<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="find" id="search" style="box-shadow:none !important;">
+							<input class="sb-search-submit" type="submit" value="">
+							<span class="sb-icon-search"></span>
+						</form>
+					</div>
+				</li>			
 			</ul>
-			</div>
 			
 			<!-- end menu -->
 
-
-			<div id="content" class="container clearfix">
-	<div class="item">
-		<?php echo $row{'name'};?>
-		<?php echo $row{'band_id'};?>
+	<div class="bandHeader">				
+		<h3 class="header"><?php echo $row{'name'};?></h3>
 	</div>
-</div>
+	<div id="content" class="container clearfix">
+	<!-- album image + info box -->
+		<div class="item cover">
+			<?php if($row{'image'} == null){ ?>
+				<img style="width:100%;" src="../images/no_image.jpg">
+			<?php }else{ ?>
+				<a href="http://watevermusic.com/images/db/<?php echo $row{'image'};?>" rel="shadowbox">
+					<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+				</a>
+			<?php } ?>
+			<div class="dbblock">
+				
+				<?php if($row{'year'} != null) { ?>
+					<div class="statblock">
+						year <br><span><?php echo $row{'year'};?> </span>
+					</div>
+				<?php  } else { }?>
+				
+				<?php if($row{'genre'} != null) { ?>
+					<div class="statblock">
+						genre <br><span><?php echo $row{'genre'};?> </span>
+					</div>
+				<?php  } else { }?>
+				
+				<?php if($row{'length'} != null) { ?>
+					<div class="statblock">
+						length <br><span><?php echo $row{'length'};?> </span>
+					</div>
+				<?php  } else { }?>
+				
+				<?php if($row{'label'} != null) { ?>
+					<div class="statblock">
+						label <br><span><?php echo $row{'label'};?> </span>
+					</div>
+				<?php  } else { }?>
+				
+				<?php if($row{'producer'} != null) { ?>
+					<div class="statblock">
+						producer <br><span><?php echo $row{'producer'};?> </span>
+					</div>
+				<?php  } else { }?>
+				
+			</div>
+		</div>
+	<!-- end of album image + info box -->
+	
+	<!-- album description -->
+		<div class="item bio featured">
+			<div class="gridSpacer" style="padding-top:0px;">
+			<?php if($row{'desc'} != null) { 
+				 echo $row{'desc'};
+				  } else{ 
+				 echo 'desc Not Found';
+			} ?>
+			</div>
+		</div>
+	<!-- end album descirption -->
+	
+	<!-- track listing -->
+		<div class="item featured">
+			<h3 class="header">track listing</h3>
+			<?php while ($song = mysql_fetch_array($songs)) { ?>
+				<div class="statblock">
+				<?php echo $song{'name'};?><br><span><?php echo $song{'length'};?> </span>
+				</div>
+			<?php } ?>
+		</div>
+	<!-- end track listing -->
+		
+	</div>
 <div class="shareBar">
 
 	<!-- fb like -->
@@ -209,4 +258,19 @@ $row = mysql_fetch_array($result);
 
 
 <!-- end of menu scripts -->
+<!-- search scripts -->
+		<script src="../js/classie.js"></script>
+		<script src="../js/uisearch.js"></script>
+		<script>
+			new UISearch( document.getElementById( 'sb-search' ) );
+		</script>
+
+		<!-- end search scripts -->
+
+<!-- shadowbox scripts -->
+<script type="text/javascript" src="../js/shadowbox.js"></script>
+<script type="text/javascript">
+Shadowbox.init();
+</script>
+<!-- end shadowbox scripts -->
 </body>
