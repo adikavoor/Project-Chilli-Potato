@@ -63,8 +63,15 @@ $genres = $row{'genre'};
 <script src="../js/modernizr-2.5.3.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/shadowbox.css">
+  <script src='../js/jquery-1.10.js'></script>
+  <script src='../js/nprogress.js'></script>
+  <link href='../css/nprogress.css' rel='stylesheet' />
+
+
 </head>
-<body>
+<body style="display: none;">
+
+
 
   <!-- END OF HEADER SHIT -->
   
@@ -87,7 +94,7 @@ $genres = $row{'genre'};
 			</ul>
 			
 			<!-- end menu -->
-			<div class="bandHeader">
+			<div class="bandHeader" id="bandName">
 				
 		<h3 class="header"><?php echo $row{'name'};?></h3>
 			</div>
@@ -101,9 +108,14 @@ $genres = $row{'genre'};
 	<?php if($row{'image'} == null){ ?>
 		<img style="width:100%;" src="../images/no_image.jpg">
 	<?php }else{ ?>
+	
 		<a href="http://watevermusic.com/images/db/<?php echo $row{'image'};?>" rel="shadowbox">
+			<div class="randomImage">
 			<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+			<img class="hoverImage" src="../images/band_zoom_hover.png" style="width:100%;">
+			</div>
 		</a>
+		
 		<?php } ?>
       
 	  <div class="dbblock">
@@ -155,7 +167,7 @@ $genres = $row{'genre'};
     <!-- END OF band bio -->
 	
 	<!-- discography -->
-	<div class="item featured">
+	<div class="item featured" id="discography">
 	<h3 class="header">discography</h3>
 	<?php while ($row_albums = mysql_fetch_array($albums)) { ?>
 		
@@ -178,7 +190,7 @@ $genres = $row{'genre'};
 	<!-- end of discography -->
 	
 	<!-- band members -->
-    <div class="item">
+    <div class="item" id="members">
       <div class="dbblock">
 						<h3 class="header">members</h3>
 						<?php while ($row_members = mysql_fetch_array($members)) { ?>
@@ -198,7 +210,7 @@ $genres = $row{'genre'};
 	
     
 	<!-- social links -->
-    <div class="item">
+    <div class="item" id="socialLinks">
       <h3 class="header">social</h3>
 			<!-- website link -->
 			<?php if($row{'website'} != null) { ?>
@@ -251,27 +263,11 @@ $genres = $row{'genre'};
 		
 	
 	
-    <!-- Image Gallery -->
-
-		<div class="item">
-<ul>
-    <?php
-        $dirname = __DIR__.'\images\db\\'.$row{'images'};
-        $images = scandir($dirname);
-        shuffle($images);
-        $ignore = Array(".", "..");
-        foreach($images as $curimg){
-            if(!in_array($curimg, $ignore)) {
-                echo "<li style= 'list-style-type:none;margin-right:10px;margin-bottom:10px;float:left;'><a href='".$dirname."/".$curimg."'><img src='".$dirname."/".$curimg."' alt='' /></a></li>\n ";
-            }
-        }                 
-    ?>
-</ul>
-</div>
-	<!-- end of image gallery -->
+   
 	
   </div>
 <!-- end of card conteiner -->
+
 <!-- get 4 random bands -->
 <?php 
 	$string = explode(" ",$genres);		
@@ -295,6 +291,29 @@ $genres = $row{'genre'};
     die('Invalid query: ' . mysql_error());
 }
 ?>
+ <!-- Image Gallery -->
+<?php if($row{'images'} != null){ ?>
+<div class="imageGallery">
+<div class="bandHeader">
+		<h3 class="header">images</h3>
+	</div>
+
+	<ul>
+	    <?php
+	        $dirname = __DIR__.'/images/db/'.$row{'images'};
+	        $images = scandir($dirname);
+	        shuffle($images);
+	        $ignore = Array(".", "..","*.html");
+	        foreach($images as $curimg){
+	            if(!in_array($curimg, $ignore)) {
+	                echo "<li style='clear: both;display:inline-block;list-style-type:none;height:150px;margin-left: -4px;'><a rel='shadowbox[gallery];' href='../images/db/".$row{'images'}."/".$curimg."'><img style='height:100%;' src='../images/db/".$row{'images'}."/".$curimg."' alt='' /></a></li>\n ";
+	            }
+	        }                 
+	    ?>
+	</ul>
+</div>
+<?php } ?>
+	<!-- end of image gallery -->
 <div class="relatedBands">
 
 	<div class="bandHeader">
@@ -303,7 +322,7 @@ $genres = $row{'genre'};
 	<div id="content" class="container clearfix">
 			<?php while ($related_bands = mysql_fetch_array($related)) { 
 				if($related_bands{'id'}!=$band){?>
-					<div class="item">
+					<div class="item" style="display:none;">
 						<a href="../bands.php/?band=<?php echo $related_bands{'id'}; ?>">
 						<?php if($related_bands{'image'} != null) { ?>
 							<div class="randomImage">
@@ -452,6 +471,31 @@ Shadowbox.init();
 </script>
 <!-- end shadowbox scripts -->
 		
+<!-- progress bar -->
+<script>
+    $('body').show();    
+	
+    NProgress.configure({ showSpinner: false });
+	NProgress.start();
+	$('#gn-menu').ready(function() {NProgress.set(0.1); });
+	$('#bandName').ready(function() {NProgress.inc(); });
+	$('.item').ready(function() { NProgress.inc();  });
+	$('.cover').ready(function() { NProgress.inc();  });
+	$('.cover .dbblock').ready(function() { NProgress.inc();  });
+	$('.bio').ready(function() { NProgress.inc();  });
+	$('#discography .album').ready(function() { NProgress.inc();  });
+	$('#discography').ready(function() { NProgress.inc();  });
+	$('#members').ready(function() { NProgress.inc();  });
+	$('#socialLinks').ready(function() { NProgress.inc();  });
+	$('.imageGallery img').ready(function() { NProgress.inc();  });
+	$('.imageGallery').ready(function() { NProgress.inc();  });
+	$('.relatedBands .item').ready(function() { NProgress.inc(); $('.relatedBands .item').show(); });
+	$('.shareBar').ready(function() { NProgress.inc();  });
+	$('.footer').ready(function() { NProgress.inc();  });
+	$('body').ready(function() { NProgress.done(true);  });
+  </script>
+
+
 </body>
 
 

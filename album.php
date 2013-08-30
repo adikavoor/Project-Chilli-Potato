@@ -85,7 +85,10 @@ $songs = mysql_query("SELECT name,length FROM songs WHERE album_id=$album");
 				<img style="width:100%;" src="../images/no_image.jpg">
 			<?php }else{ ?>
 				<a href="http://watevermusic.com/images/db/<?php echo $row{'image'};?>" rel="shadowbox">
-					<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+					<div class="randomImage">
+						<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
+						<img class="hoverImage" src="../images/album_zoom_hover.png" style="width:100%;">
+					</div>
 				</a>
 			<?php } ?>
 			<div class="dbblock">

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en" class="no-js" style="height:100%;">
 	<head>
 		<meta charset="UTF-8" />
@@ -14,6 +14,8 @@
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 		<link rel="stylesheet" type="text/css" href="css/cards.css">
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+  <script src='js/jquery-1.10.js'></script>
+  <script src='js/nprogress.js'></script>
 
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/template.css">
@@ -22,10 +24,13 @@
 <link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/modernizr-2.5.3.min.js"></script>
+		<link href='css/nprogress.css' rel='stylesheet' />
+
+
 		
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	</head>
-	<body style="height:100%;">
+	<body style="height:100%;display:none;">
 	
 	<?php
 		$username = "dkavoor_whatever";
@@ -45,7 +50,7 @@
 		$result = mysql_query("SELECT id,name,image FROM bands ORDER BY RAND() LIMIT 0,8;");
 		//fetch tha data from the database		 
 	 ?>
-		<div class="container">
+		<div class="container" >
 			
 			<!-- menu -->
 			
@@ -87,8 +92,8 @@
 			<h3 class="header">have you heard about these bands?</h3></div>
 			<div id="content" class="container clearfix">
 				<?php while ($row = mysql_fetch_array($result)) { ?>
-				<div class="item">
-					<a href="bands.php/?band=<?php echo $row{'id'}; ?>" target="_blank">
+				<div class="item" style="display:none;">
+					<a href="bands.php/?band=<?php echo $row{'id'}; ?>">
 					<?php if($row{'image'} != null) { ?>
 						<div class="randomImage">
 							<img style="width:100%;" src="http://watevermusic.com/images/db/<?php echo $row{'image'};?>">
@@ -107,6 +112,7 @@
 				<?php } ?>
 			</div>
 		</div>	
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<!-- imagesLoaded jQuery plugin by @desandro : https://github.com/desandro/imagesloaded -->
 		<script src="js/jquery.imagesloaded.min.js"></script>
@@ -117,7 +123,19 @@
 			});
 		</script>
 		
-
+		<!-- loadbar -->
+<script>
+    $('body').show();
+	$('.loader').show();
+    $('.version').text(NProgress.version);
+	NProgress.configure({ showSpinner: false });
+    NProgress.start();   
+	$('.container').ready(function() {NProgress.set(0.3); });
+	$('.searchBox').ready(function() {NProgress.set(0.6); });
+	$('.item').ready(function() { NProgress.inc(); $('.item').show(); });
+    $('body').ready(function() { NProgress.done(true);  });
+  </script>
+  <!-- end loadbar -->
 		<!-- google analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -156,5 +174,8 @@
 		</script>
 
 		<!-- end search scripts -->
+		
+		
+
 	</body>
 </html>
