@@ -292,6 +292,7 @@ $genres = $row{'genre'};
 }
 ?>
  <!-- Image Gallery -->
+ <!--
 <?php if($row{'images'} != null){ ?>
 <div class="imageGallery">
 <div class="bandHeader">
@@ -312,6 +313,7 @@ $genres = $row{'genre'};
 	    ?>
 	</ul>
 </div>
+-->
 <?php } ?>
 	<!-- end of image gallery -->
 <div class="relatedBands">
