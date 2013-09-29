@@ -1,7 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Hi , {{user.nickname}}!</h1>
-{% for post in posts %}
-<div><p>{{post.author}} says: <b>{{post.body}}</b></p></div>
-{% endfor %}
+
+		<div class="searchBox">
+				<div style="text-align:center;">
+					<img src="./static/images/webdb-1.png">
+				</div>
+				<form name="search" method="get" action="/search" style="text-align:center;margin-top:20px;">
+					<input type="text" name="find"  placeholder="search wemdb..." style="width:80%;"/> 
+				</form>
+			</div>
+			
+			<div class="wemdbBottom">
+			<div class="bandHeader">
+			<h3 class="header">have you heard about these bands?</h3></div>
+			<div id="content" class="container clearfix">
+				{% for band in bands %}
+				<div class="item" style="display:none;">
+					<a href="./band/{{band.id}}">
+					{% if band.img != "" %}
+						<div class="randomImage">
+							<img style="width:100%;" src="{{band.img}}">
+							<img class="hoverImage" src="./static/images/band_hover.png">
+						</div>
+					{% else %}
+						<div class="randomImage">
+							<img style="width:100%;" src="http://wemdb.in/images/no_image.jpg">
+							<img class="hoverImage" src="./static/images/band_hover.png">
+						</div>
+					{% endif %}
+					<div class="bandHeader">
+					<div class="bandName">{{band.title}}</div></div>
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+		</div>	
 {% endblock %}

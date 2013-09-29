@@ -1,0 +1,92 @@
+#content {
+	/*width: 980px;*/
+	/*width: 95%;*/
+	width: auto;
+	margin: 20px auto 10px auto;
+}
+
+.item {
+	display: block;
+	float: left;
+	width: 300px;
+	margin: 0 10px 10px 0;
+	background: #FFF;
+	border: 1px solid #D8D8D8;
+	
+	box-sizing: border-box;
+	border-bottom-width: 2px;
+	border-top-width: 0;
+	-webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.featured {
+	width: 610px;
+}
+
+
+.item img {
+	width: 100%;
+	height: auto;
+
+}
+
+.featured img {
+  width: 620px;
+  height: auto;
+}
+.gridSpacer{
+	padding:10px;
+}
+.item .header {
+background: #FF6B09;
+color: #FFF;
+text-align: center;
+
+}
+.item.album{
+	background-color:#fff;
+	width:140px;	
+}
+.item.album img{
+border-radius:0;
+}
+
+.albumName {
+padding: 5px 0 8px 0;
+text-align:center;
+	font-size: 15px;
+	line-height: 1;
+	color: #000;
+}
+body{
+line-height:1;
+}
+.bio {
+background: none;
+border: 0;
+text-align: justify;
+}
+.bio p {
+margin: 0 0 1.5em;
+}
+.statblock span {
+font-size: 20px;
+font-weight: 300;
+color: #FF6B09;
+}
+.album {
+text-align: center;
+width: 150px;
+height: 200px;
+position:relative;
+padding: 10px 10px 0 10px;
+margin: 5px;
+border: 1px solid rgba(0,0,0,0.1);
+display: inline-block;
+}
+.randomImage{
+position:relative;
+}

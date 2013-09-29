@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bandHeader" id="bandName">
+	<h3 class="header">{{band.title}}
+	</h3>
+</div>
+<!-- the main container for the cards -->
+<div id="content" class="container clearfix">
+	<!-- band Image -->
+	<div class="item cover featured">
+		{% if band.img == "" %}
+		<img style="width:100%;" src="/static/images/no_image.jpg">
+		{% else %}
+		<a href="{{band.img}}" rel="shadowbox">
+		<div class="randomImage">
+			<img style="width:100%;" src="{{band.img}}"> <img class="hoverImage" src="/static/images/band_zoom_hover.png" style="width:100%;">
+		</div>
+		</a>
+		{% endif %}
+		<div class="dbblock">
+			{% if band.year != "" %}
+			<div class="statblock">
+				 year formed <br>
+				<span>{{ band.year}}
+				</span>
+			</div>
+			{% endif %}
+			{% if band.origin != "" %}
+			<div class="statblock">
+				 origin <br>
+				<span>{{ band.origin}}
+				</span>
+			</div>
+			{% endif %}
+			{% if band.genre != "" %}
+			<div class="statblock">
+				 genres <br>
+				<span>{{ band.genre}}
+				</span>
+			</div>
+			{% endif %}
+			{% if band.label != "" %}
+			<div class="statblock">
+				 labels <br>
+				<span>{{ band.label}}
+				</span>
+			</div>
+			{% endif %}
+			{% if band.manager != "" %}
+			<div class="statblock">
+				 manager <br>
+				<span>{{ band.manager}}
+				</span>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	<!-- END OF band Image -->
+	<!-- band bio -->
+	<div class="item bio featured">
+		<div class="gridSpacer" style="padding-top:0px;">
+			{% if band.bio != "" %}
+				 {{ band.bio}}
+			{% else %}
+				 Bio Not Found
+			{% endif %}
+		</div>
+	</div>
+	<!-- END OF band bio -->
+	<!-- band members -->
+	{% if band.members %}
+	<div class="item" id="members">
+		<div class="dbblock">
+			<h3 class="header">members</h3>
+			<div class="statblock">
+				{{ band.members }}
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<!-- end of band member -->
+	<!-- social links -->
+	{% if band.facebook or band.twitter or band.website or band.youtube or band.soundcloud %}
+	<div class="item" id="socialLinks">
+		<h3 class="header">social</h3>
+		<!-- website link -->
+		{% if band.website != "" %}
+		
+		<div class="socialLink">
+			<div class="spacer">
+				<a class="artistLink" href="{{ band.website}}" target="_blank"><img src="/static/images/website.png"></a>
+			</div>
+		</div>
+		{% endif %}
+		<!-- fb link -->
+		{% if band.facebook != "" %}
+		<div class="socialLink">
+			<div class="spacer">
+				<a class="artistLink" href="{{ band.facebook}}" target="_blank"><img src="/static/images/facebook500.png"></a>
+			</div>
+		</div>
+		{% endif %}
+		<!-- twitter link -->
+		{% if band.twitter != "" %}
+		<div class="socialLink">
+			<div class="spacer">
+				<a class="artistLink" href="{{ band.twitter}}" target="_blank"><img src="/static/images/twitter.png"></a>
+			</div>
+		</div>
+		{% endif %}
+		<!-- youtube link -->
+		{% if band.youtube != "" %}
+		<div class="socialLink">
+			<div class="spacer">
+				<a class="artistLink" href="{{ band.youtube}}" target="_blank"><img src="/static/images/youtube.png"></a>
+			</div>
+		</div>
+		{% endif %}
+		<!-- soundcloud link -->
+		{% if band.soundcloud != "" %}
+		<div class="socialLink">
+			<div class="spacer">
+				<a class="artistLink" href="{{ band.soundcloud}}" target="_blank"><img src="/static/images/soundcloud.png"></a>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+	{% endif %}
+	<!-- end of social links -->
+</div>
+<!-- end of card conteiner -->
+
+<div class="shareBar">
+	<!-- fb like -->
+	<div class="fb-like" data-href="http://www.wemdb.in/band/{{band.id}}" data-width="450" data-layout="button_count" data-show-faces="true" data-send="false">
+	</div>
+	<!-- twitter tweet -->
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.wemdb.in/band/{{ band.id}}" data-via="watevermusic" data-hashtags="watevermsuic" data-dnt="true">Tweet</a>
+	<!-- google +1 -->
+	<div class="g-plusone" data-size="medium">
+	</div>
+	<!-- pinterest pin it -->
+	<a href="//pinterest.com/pin/create/button/?url=http://www.wemdb.in/band/{{band.id}}&media={{band.img}}
+	&description={{ band.bio}}
+	" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png"/></a>
+	<!-- stumbleupon button -->
+	<su:badge layout="1"></su:badge>
+</div>
+<footer id="gkFooter" class="gkPage">
+<div>
+	<p id="gkCopyrights">
+		© 2013, watevermusic.com. All Rights Reserved.
+	</p>
+</div>
+</footer>
+<!-- fb js scripts -->
+<div id="fb-root">
+</div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=306813872789574";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- end fb js scripts -->
+<!-- twitter scripts -->
+<script>
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<!-- end twitter scripts -->
+<!-- g+1 scripts -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<!-- end g+1 scripts -->
+<!-- pinterest scripts -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+<!-- end pinterest scripts -->
+<!-- stumbleupon scripts -->
+<script type="text/javascript">
+  (function() {
+    var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
+    li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
+  })();
+</script>
+<!-- end stumbleupon scripts -->
+<!-- shadowbox scripts -->
+<script type="text/javascript" src="../js/shadowbox.js"></script>
+<script type="text/javascript">
+Shadowbox.init();
+</script>
+<!-- end shadowbox scripts -->
+<!-- progress bar -->
+<script>
+    $('body').show();    
+    NProgress.configure({ showSpinner: false });
+	NProgress.start();
+	$('#gn-menu').ready(function() {NProgress.set(0.1); });
+	$('#bandName').ready(function() {NProgress.inc(); });
+	$('.item').ready(function() { NProgress.inc();  });
+	$('.cover').ready(function() { NProgress.inc();  });
+	$('.cover .dbblock').ready(function() { NProgress.inc();  });
+	$('.bio').ready(function() { NProgress.inc();  });
+	$('#discography .album').ready(function() { NProgress.inc();  });
+	$('#discography').ready(function() { NProgress.inc();  });
+	$('#members').ready(function() { NProgress.inc();  });
+	$('#socialLinks').ready(function() { NProgress.inc();  });
+	$('.imageGallery img').ready(function() { NProgress.inc();  });
+	$('.imageGallery').ready(function() { NProgress.inc();  });
+	$('.relatedBands .item').ready(function() { NProgress.inc(); $('.relatedBands .item').show(); });
+	$('.shareBar').ready(function() { NProgress.inc();  });
+	$('.footer').ready(function() { NProgress.inc();  });
+	$('body').ready(function() { NProgress.done(true);  });
+  </script>
+{% endblock %}

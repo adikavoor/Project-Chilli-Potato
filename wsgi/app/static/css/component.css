@@ -1,0 +1,305 @@
+@font-face {
+	font-family: 'entypo';
+	src:url('../fonts/controls/entypo.eot');
+	src:url('../fonts/controls/entypo.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/controls/entypo.woff') format('woff'),
+		url('../fonts/controls/entypo.ttf') format('truetype'),
+		url('../fonts/controls/entypo.svg#entypo') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+		font-weight: normal;
+		font-style: normal;
+		font-family: 'ecoicons';
+		src: url("../fonts/fontawesome/fontawesome-webfont.eot");
+		src: url("../fonts/fontawesome/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
+			 url("../fonts/fontawesome/fontawesome-webfont.woff") format("woff"),
+			 url("../fonts/fontawesome/fontawesome-webfont.ttf") format("truetype"),
+			 url("../fonts/fontawesome/fontawesome-webfont.svg#ecoicons") format("svg");
+}
+.cbp-bislideshow {
+	list-style: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.cbp-bislideshow li {
+	position: absolute;
+	width: 101%;
+	height: 101%;
+	top: -0.5%;
+	left: -0.5%;
+	opacity: 0;
+	-webkit-transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	transition: opacity 1s;
+}
+
+/* If background-size supported we'll add the images to the background of the li */
+
+.backgroundsize .cbp-bislideshow li {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}
+
+/* ...and hide the images */
+.backgroundsize .cbp-bislideshow li img {
+	display: none;
+}
+
+.cbp-bislideshow li img {
+	display: block;
+	width: 100%;
+}
+
+.cbp-bicontrols {
+	position: fixed;
+	width: 60%;
+	height: 100px;
+	margin: 0 auto;
+	top: 30%;
+	left: 20%;
+}
+input[type="text"] {
+width: 100%;
+height: 45px;
+font-size: 30px;
+box-shadow: none !important;
+border: 0 !important;
+padding: 0 0 0 15px;
+}
+.cbp-bicontrols span {
+	float: left;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	cursor: pointer;
+}
+
+.cbp-bicontrols span:before {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	font-family: 'entypo';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 100px;
+	font-size: 80px;
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	opacity: 0.7;
+}
+
+.cbp-bicontrols span:hover:before {
+	opacity: 1;
+}
+
+.cbp-bicontrols span:active:before {
+	top: 2px;
+}
+
+span.cbp-biplay:before {
+	content: "\e002";
+}
+
+span.cbp-bipause:before {
+	content: "\e003";
+}
+
+span.cbp-binext:before {
+	content: "\e000";
+}
+
+span.cbp-biprev:before {
+	content: "\e001";
+}
+
+.cbp-bicontrols span.cbp-binext {
+	float: right;
+}
+
+/* Fallback */
+
+.no-js.no-backgroundsize .cbp-bislideshow li:first-child {
+	opacity: 1;
+}
+
+.no-js.backgroundsize .cbp-bislideshow li:first-child img {
+	display: block;
+}
+
+body, html{
+background-image:url(../images/brillant.png)!important;
+}
+.searchBox{
+margin-top:50px;
+}
+.wemdbBottom{
+margin-top:50px;
+}
+input[type="text"]{
+border-color: rgba(0,0,0, 0.8)!important;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(0,0,0, 0.6)!important;
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0,0,0,.6)!important;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(0,0,0, 0.6)!important;
+}
+.bandName {
+color: #000;
+padding: 0 0 5px 0px;
+font-size: 18px;
+}
+.bandName:hover{
+color:#ff6b09;
+}
+.bandHeader {
+margin-top: 5px;
+
+text-align: right;
+padding-right: 50px;
+background-image: url(http://tunepatrol.com/static/img/heading_bg.png);
+background-position: right;
+background-repeat: no-repeat;
+}
+.bandHeader .header{
+color:#ff6b09;
+}
+
+.sb-search {
+	position: relative;
+	width: 0%;
+	min-width: 60px;
+	height: 60px;
+	float: right;
+	overflow: hidden;
+	-webkit-transition: width 0.3s;
+	-moz-transition: width 0.3s;
+	transition: width 0.3s;
+	-webkit-backface-visibility: hidden;
+}
+
+.sb-search-input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	outline: none;
+	background: #fff;
+	width: 100%;
+	height: 60px;
+	margin: 0;
+	z-index: 10;
+	padding: 20px 65px 20px 20px;
+	font-family: inherit;
+	font-size: 20px;
+	color: #2c3e50;
+}
+
+.sb-search-input::-webkit-input-placeholder {
+	color: #efb480;
+}
+
+.sb-search-input:-moz-placeholder {
+	color: #efb480;
+}
+
+.sb-search-input::-moz-placeholder {
+	color: #efb480;
+}
+
+.sb-search-input:-ms-input-placeholder {
+	color: #efb480;
+}
+
+.sb-icon-search,
+.sb-search-submit  {
+	width: 60px;
+	height: 45px;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0;
+	margin: 0;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sb-search-submit {
+	background: #fff; /* IE needs this */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+    filter: alpha(opacity=0); /* IE 5-7 */
+    opacity: 0;
+	color: transparent;
+	border: none;
+	outline: none;
+	z-index: -1;
+}
+
+.sb-icon-search {
+	color: #fff;
+	background: #FF6B09;
+	z-index: 90;
+	font-size: 22px;
+	font-family: 'ecoicons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.sb-icon-search:before {
+	content: "\F002";
+}
+
+/* Open state */
+.sb-search.sb-search-open,
+.no-js .sb-search {
+	width: 100%;
+}
+
+.sb-search.sb-search-open .sb-icon-search,
+.no-js .sb-search .sb-icon-search {
+	background: #FF6B09;
+	color: #fff;
+	z-index: 11;
+}
+
+.sb-search.sb-search-open .sb-search-submit,
+.no-js .sb-search .sb-search-submit {
+	z-index: 90;
+}
+.hoverImage, .randomImage .hoverImage{
+	position:absolute;
+	top:0;
+	left:0;
+	opacity:0;
+	-webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+.album:hover .hoverImage, .item:hover .randomImage .hoverImage{
+opacity:1;
+-webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}

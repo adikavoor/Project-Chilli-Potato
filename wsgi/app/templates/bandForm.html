@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+		<form action="bandForm" method='POST'>
+			<table>
+				<tr><td><label>Title</label></td><td><input labetype="text" name='title'/></td></tr>
+				<tr><td><label>Image</label></td><td><input type="text" name='img'/></td></tr>
+				<tr><td><label>BIO</label></td><td> <textarea rows="40" cols="80" name='bio'></textarea></td></tr>
+				<tr><td><label>Band members. Seperate names with ,</label></td><td><input type="text" name='band_mem'/></td></tr>
+				<tr><td><label>Year of formation</label></td><td><input type="text" name='year'/></td></tr>
+				<tr><td><label>Origin</label></td><td><input type="text" name='origin'/></td></tr>
+				<tr><td><label>Label</label></td><td><input type="text" name ='label'/></td></tr>
+				<tr><td><label>Genre</label></td><td><input type="text" name ='genre'/></td></tr>
+				<tr><td><label>Manager</label></td><td><input type="text" name ='manager'/></td></tr>
+				<tr><td><label>Website</label></td><td><input type="text" name='website'/></td></tr>
+				<tr><td><label>Facebook</label></td><td><input type="text" name='facebook'/></td></tr>
+				<tr><td><label>Twitter</label></td><td><input type="text" name='twitter'/></td></tr>
+				<tr><td><label>YouTube</label></td><td><input type="text" name='youtube'/></td></tr>
+				<tr><td><label>SoundCloud</label></td><td><input type="text" name='soundcloud'/></td></tr>
+			</table>
+			<input type="submit" value="Submit Band info"/>
+		</form>
+{% endblock %}

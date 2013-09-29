@@ -1,29 +1,125 @@
-<!doctype HTML5>
-<html>
-  <head>
-    {% if title %}
-    <title>{{title}} - microblog</title>
-    {% else %}
-    <title>microblog</title>
-    {% endif %}
-  </head>
-  <body>
-    <div>Microblog:
-        <a href="{{ url_for('index') }}">Home</a>
-        {% if g.user.is_authenticated() %}
-        | <a href="{{ url_for('logout') }}">Logout</a>
-        {% endif %}
-    </div>
-    <hr>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-    {% for message in messages %}
-        <li>{{ message }} </li>
-    {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    {% block content %}{% endblock %}
-  </body>
+<!DOCTYPE html>
+<html lang="en" class="no-js" style="height:100%;">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		{% if title %}
+		<title>{{title}} - wemDB.in</title>
+		{% else %}
+		<title>wemDB.in</title>
+		{% endif %}
+		<meta name="description" content="wemdb" />
+		<meta name="keywords" content="wemdb, music, database, india, indian, independent, scene, indie" />
+		<meta name="author" content="Aditya Kavoor" />
+		<link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="/static/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/component.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/menu.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/cards.css">
+		<link href="/static/css/bands.css" type="text/css" rel="stylesheet">
+<br/>
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+  <script src='/static/js/jquery-1.10.js'></script>
+  <script src='/static/js/nprogress.js'></script>
+
+<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/layout.css">
+<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/template.css">
+<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/k2.css">
+<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/menu/menu.css" />
+<link rel="stylesheet" type="text/css" href="http://watevermusic.com/templates/gk_rockwall/css/override.css">
+		<script src="/static/js/modernizr.custom.js"></script>
+		<script src="/static/js/modernizr-2.5.3.min.js"></script>
+		<link href='/static/css/nprogress.css' rel='stylesheet' />
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	</head>
+	<body style="height:100%;display:none;">
+		<div class="container" >
+			
+			<!-- menu -->
+			<ul id="gn-menu" class="gn-menu-main">
+				
+				<li><a href="/"><img style="width:160px;margin-top: 0.1em;" src="http://wemdb.in/images/webdb-1.png" alt="watevermusic.com"></a></li>
+				<li><a href="http://www.watevermusic.com/"><img src="/static/images/Watevermusic_logo.png"></a></li>
+				<li>
+								
+									<div id="sb-search" class="sb-search">
+										<form  name="search" method="get" action="/search">
+											<input class="sb-search-input" placeholder="search WEMDb.." type="text" value="" name="find" id="search" style="box-shadow:none !important;">
+											<input class="sb-search-submit" type="submit" value="">
+											<span class="sb-icon-search"></span>
+										</form>
+									</div>
+					</li>			
+			</ul>
+			<!-- end menu -->
+			{% block content %}{% endblock %}
+		</div>
+
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!-- imagesLoaded jQuery plugin by @desandro : https://github.com/desandro/imagesloaded -->
+		<script src="/static/js/jquery.imagesloaded.min.js"></script>
+		<script src="/static/js/cbpBGSlideshow.min.js"></script>
+		<script>
+			$(function() {
+				cbpBGSlideshow.init();
+			});
+		</script>
+		
+		<!-- loadbar -->
+<script>
+    $('body').show();
+	$('.loader').show();
+    $('.version').text(NProgress.version);
+	NProgress.configure({ showSpinner: false });
+    NProgress.start();   
+	$('.container').ready(function() {NProgress.set(0.3); });
+	$('.searchBox').ready(function() {NProgress.set(0.6); });
+	$('.item').ready(function() { NProgress.inc(); $('.item').show(); });
+    $('body').ready(function() { NProgress.done(true);  });
+  </script>
+  <!-- end loadbar -->
+		<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43354164-1', 'wemdb.in');
+  ga('send', 'pageview');
+
+</script>
+<!-- end of google analytics -->
+
+<!-- menu scripts -->
+
+<script src="/static/js/classie.js"></script>
+		<script src="/static/js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+<!-- end of menu scripts -->
+<!-- masonry script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script src="/static/js/jquery.masonry.min.js"></script>
+  <script src="/static/js/script.js"></script>
+  <!-- end masonry script -->
+		<!-- search scripts -->
+		<script src="/static/js/classie.js"></script>
+		<script src="/static/js/uisearch.js"></script>
+		<script>
+			new UISearch( document.getElementById( 'sb-search' ) );
+		</script>
+
+		<!-- end search scripts -->
+		
+		
+
+	</body>
 </html>
